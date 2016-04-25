@@ -40,6 +40,12 @@ def main():
 
     # Parse Response
     j = json.loads(res.text)
+    
+    if res.status_code >= 400:
+        msg = j.get('message', 'UNDEFINED ERROR (no error description from server)')
+        print 'ERROR: %s' % msg
+        return
+
     token = j['token']
     print 'New token: %s' % token
 
